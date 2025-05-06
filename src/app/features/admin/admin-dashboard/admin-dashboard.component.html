@@ -1,0 +1,88 @@
+<!--<div class="admin-container">-->
+
+
+
+
+<!--  &lt;!&ndash; Main Content &ndash;&gt;-->
+<!--  -->
+<!--  <mat-grid-list cols="2" rowHeight="500px" gutterSize="16px">-->
+<!--    &lt;!&ndash; Stats Cards &ndash;&gt;-->
+<!--    <mat-grid-tile colspan="2">-->
+<!--      <app-stats-cards></app-stats-cards>-->
+<!--    </mat-grid-tile>-->
+
+<!--    &lt;!&ndash; Revenue Chart &ndash;&gt;-->
+<!--    <mat-grid-tile colspan="1">-->
+<!--      <mat-card class="chart-card">-->
+<!--        <h2>Revenue Overview</h2>-->
+<!--        <p>Monthly revenue for the current year</p>-->
+<!--        <app-revenuechart />-->
+<!--      </mat-card>-->
+<!--    </mat-grid-tile>-->
+
+<!--    &lt;!&ndash; User Distribution &ndash;&gt;-->
+<!--    <mat-grid-tile colspan="1">-->
+<!--      <mat-card class="chart-card">-->
+<!--        <h2>User Distribution</h2>-->
+<!--        <p>Breakdown of user types</p>-->
+<!--        <app-userdistribution />-->
+<!--      </mat-card>-->
+<!--    </mat-grid-tile>-->
+<!--  </mat-grid-list>-->
+<!--</div>-->
+<mat-sidenav-container class="sidenav-container">
+
+  <!-- Sidebar -->
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list>
+      <mat-list-item routerLink="/admin/home">
+        <mat-icon>home</mat-icon> Accueil
+      </mat-list-item>
+      <mat-list-item routerLink="/admin/users">
+        <mat-icon>person</mat-icon> Utilisateurs
+      </mat-list-item>
+      <mat-list-item routerLink="/admin/settings">
+        <mat-icon>settings</mat-icon> Paramètres
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Contenu principal -->
+<!--  <div>-->
+<!--    -->
+<!--  </div>-->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Admin Dashboard</span>
+    </mat-toolbar>
+      <!-- Header -->
+      <header class="admin-header">
+        <div>
+          <h1>Administrator Dashboard</h1>
+
+        </div>
+            <div class="header-actions">
+              <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput placeholder="Search...">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+
+              <button mat-icon-button [matMenuTriggerFor]="userMenu">
+                <mat-icon>account_circle</mat-icon>
+              </button>
+              <mat-menu #userMenu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>logout</mat-icon> Logout
+                </button>
+              </mat-menu>
+            </div>
+          </header>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

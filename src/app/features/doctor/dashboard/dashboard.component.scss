@@ -1,0 +1,82 @@
+.admin-container {
+  padding: 24px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  h1 {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.stat-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 8px 0;
+  }
+
+  .stat-trend {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+
+    &.positive {
+      color: #4caf50;
+    }
+  }
+
+  .stat-icon {
+    font-size: 2.5rem;
+    opacity: 0.2;
+  }
+}
+
+.chart-card {
+  height: 100%;
+  padding: 20px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  p {
+    color: #666;
+    margin-top: 0;
+  }
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}

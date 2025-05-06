@@ -1,0 +1,13 @@
+<div class="chart-container">
+<!--  <canvas baseChart-->
+<!--          [type]="'doughnut'"-->
+<!--          [data]="pieData"-->
+<!--          [options]="pieOptions">-->
+<!--  </canvas>-->
+  <div class="chart-legend">
+    <div *ngFor="let item of legendItems">
+      <span class="legend-color" [style.background]="item.color"></span>
+      {{ item.label }}: {{ item.value }}
+    </div>
+  </div>
+</div>
