@@ -1,5 +1,15 @@
+.admin-container{
+  display:  flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+}
+
+
 .sidenav-container {
   height: 100vh;
+  //background-color: black;
 }
 
 mat-sidenav {
@@ -17,3 +27,40 @@ mat-list-item {
   cursor: pointer;
   font-size: 16px;
 }
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.dashboard-title {
+  margin-left: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sidenav-container {
+  margin-top: 60px; /* 🔹 Décale le contenu sous le header */
+  width: 100%;
+}
+.content {
+  width: 100%; /* ✅ Le contenu principal occupe toute la largeur */
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.sidenav-container.mat-sidenav-container {
+  margin-left: 0;
+}
+
+.menu{
+  color: white;
+}
+
+
+
+

@@ -26,6 +26,11 @@ import {MatToolbar} from '@angular/material/toolbar';
   styleUrl: './admin-dashboard.component.scss'
 })
 export class AdminDashboardComponent {
+  isSidebarOpen = true; // 🔹 Définir l’état initial de la sidebar
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen; // 🔹 Change l'état de la sidebar
+  }
 
 
 }
