@@ -1,0 +1,68 @@
+<div class="userAdd-form-container">
+  <mat-card class="user-form-card">
+    <mat-toolbar color="primary">
+      <span>Ajouter un utilisateur</span>
+    </mat-toolbar>
+
+    <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+      <mat-form-field>
+        <mat-label>UserName</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Rôle</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="ADMIN">Admin</mat-option>
+          <mat-option value="MEDECIN">Médecin</mat-option>
+          <mat-option value="PATIENT">Patient</mat-option>
+          <mat-option value="SECRETAIRE">SECRETAIRE</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Sexe</mat-label>
+        <mat-select formControlName="sexe">
+          <mat-option value="HOMME">Homme</mat-option>
+          <mat-option value="FEMME">Femme</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- 🔹 Champs spécifiques pour chaque type d'utilisateur -->
+      <div *ngIf="userForm.value.role === 'PATIENT'">
+        <mat-form-field *ngIf="userForm.value.role === 'PATIENT'">
+          <mat-label>Date de Naissance</mat-label>
+          <input matInput formControlName="dateNaissance" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div  *ngIf="userForm.value.role === 'MEDECIN'">
+        <mat-form-field *ngIf="userForm.value.role === 'MEDECIN'">
+          <mat-label>Spécialité</mat-label>
+          <input matInput formControlName="specialite">
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-buttons">
+        <button mat-raised-button color="primary" type="submit">
+          Ajouter
+        </button>
+        <button mat-button type="button" (click)="cancelAdd()">Annuler</button>
+      </div>
+    </form>
+  </mat-card>
+
+</div>

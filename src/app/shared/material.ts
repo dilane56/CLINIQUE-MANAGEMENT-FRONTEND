@@ -10,8 +10,10 @@ import {MatToolbar} from '@angular/material/toolbar';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {MatIcon} from '@angular/material/icon';
 import {MatGridList, MatGridTile} from '@angular/material/grid-list';
-import {MatCell, MatHeaderCell, MatHeaderRow, MatRow, MatTable} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import {MatOption} from '@angular/material/core';
+import {MatSelect} from '@angular/material/select';
+import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from '@angular/material/datepicker';
+import {MatSort} from '@angular/material/sort';
 
 export const MATERIAL_MODULES = [
   MatInputModule,
@@ -30,12 +32,12 @@ export const MATERIAL_MODULES = [
   MatMenuItem,
   MatGridList,
   MatGridTile,
-  MatTable,
-  MatHeaderCell,
-  MatCell,
-  MatHeaderRow,
-  MatRow,
-  MatPaginator,
+  MatOption,
+  MatSelect,
+  MatDatepicker,
+  MatDatepickerToggle,
+  MatDatepickerInput,
+  MatSort,
 ] as const;
 
 

@@ -5,5 +5,9 @@ export interface UserAdd{
   password : string,
   email: string,
   sexe:Sexe,
-  
+  specialite ?:string;
+  dateNaissance?:Date;
+
+
 }
+

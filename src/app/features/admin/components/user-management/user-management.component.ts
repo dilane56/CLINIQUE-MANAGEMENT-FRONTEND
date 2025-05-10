@@ -1,32 +1,36 @@
 import {Component, OnInit} from '@angular/core';
+import {User} from '../../../../shared/models/user';
+import UserService from '../../../../core/services/user.service';
+import {UserAdd} from '../../../../shared/models/userAdd';
+import {Router} from '@angular/router';
 import {
- MatCellDef, MatColumnDef,
- MatHeaderCellDef,
-
-  MatHeaderRowDef,
- MatRowDef,
-
+  MatCell,
+  MatHeaderCell,
+  MatHeaderRow,
+  MatRow,
+  MatRowDef,
+  MatTable,
   MatTableDataSource
 } from '@angular/material/table';
-import {User} from '../../../../shared/models/user';
-import {Roles} from '../../../../shared/models/enum/roles';
-import {Sexe} from '../../../../shared/models/enum/sexe';
-import {MATERIAL_MODULES} from '../../../../shared/material';
-import {MatSort} from '@angular/material/sort';
-import UserService from '../../../../core/services/user.service';
-import {NgForOf} from '@angular/common';
+import {MatToolbar} from '@angular/material/toolbar';
+import {MatCard} from '@angular/material/card';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-user-management',
   imports: [
-    MATERIAL_MODULES,
-    MatHeaderRowDef,
-    MatRowDef,
-    MatHeaderCellDef,
-    MatColumnDef,
-    MatCellDef,
-    MatSort,
-    NgForOf,
+    MatCell,
+    MatHeaderCell,
+    MatTable,
+    MatIcon,
+    MatToolbar,
+    MatCard,
+    MatHeaderRow,
+    MatRow,
+    MatPaginator,
+    MatRowDef
+
   ],
   templateUrl: './user-management.component.html',
   standalone: true,
@@ -35,10 +39,10 @@ import {NgForOf} from '@angular/common';
 export class UserManagementComponent implements  OnInit{
   displayedColumns: string[] = ['name', 'email', 'role', 'actions'];
   dataSource = new MatTableDataSource<User>();
-  user! :User;
+  user! :UserAdd;
   users!: User[]; // 🔹 Propriété pour stocker les utilisateurs
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadUsers(); // 🔹 Charge les utilisateurs au démarrage
@@ -57,10 +61,10 @@ export class UserManagementComponent implements  OnInit{
     }else{
       this.userService.getUsers().subscribe({
         next: data => {
+          sessionStorage.setItem('users', JSON.stringify(data));
           this.dataSource.data = data;
           this.users = data;
           console.log(this.dataSource.data);
-          console.log(this.users);
         },
         error: err => {
           console.log(err);
@@ -71,7 +75,8 @@ export class UserManagementComponent implements  OnInit{
   }
  // protected readonly of = of;
 
-  addUser(user: User): void {
+  addUser(user: UserAdd): void {
+    this.router.navigateByUrl("admin/user/add");
    // this.userService.createUser(user).subscribe(() => this.loadUsers());
   }
 
@@ -80,7 +85,17 @@ export class UserManagementComponent implements  OnInit{
   }
 
   deleteUser(userId: number): void {
-    this.userService.deleteUser(userId).subscribe(() => this.loadUsers());
+    this.userService.deleteUser(userId).subscribe(
+      {
+        next : data =>{
+          this.loadUsers();
+
+        },
+        error: err => {
+          console.log(err);
+        }
+      }
+    );
   }
 
 

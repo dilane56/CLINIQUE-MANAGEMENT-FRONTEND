@@ -4,7 +4,9 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
-import {authInterceptor} from './core/interceptor/interceptor'; // Assure-toi que ce fichier existe
+import {authInterceptor} from './core/interceptor/interceptor';
+import {MAT_DATE_LOCALE} from '@angular/material/core';
+import {provideMomentDateAdapter} from '@angular/material-moment-adapter'; // Assure-toi que ce fichier existe
  // Assure-toi que ce fichier existe
 
 export const appConfig: ApplicationConfig = {
@@ -16,5 +18,9 @@ export const appConfig: ApplicationConfig = {
     ), // ✅ Corrigé (bonne indentation et placement)
     provideAnimations(), // ✅ Remplace bien HttpClientModule
   //  provideMatSnackBar() // ✅ Alternative correcte à MatSnackBarModule
-  ]
+    provideMomentDateAdapter(), // 🔹 Ajoute le DateAdapter Moment.js
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' } // ✅ Définit la locale en français
+
+
+]
 };
